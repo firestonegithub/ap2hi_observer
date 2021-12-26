@@ -1,0 +1,61 @@
+<?php
+class Users_model extends CI_Model{
+	
+
+		function auth_user($username,$password){
+
+		$query=$this->db->query("SELECT * FROM tb_user u ,  tb_user_detail d WHERE username='$username' AND password='$password' AND u.id_user = d.id_user  LIMIT 1");
+		
+		return $query;
+	}
+
+
+	function checkin_user($id){
+
+		$check=$this->db->query("SELECT first_login FROM tb_user where id_user = '".$id."' ")->row_array();
+
+		$login_date = date('Y-m-d h:i:s');
+
+		if($check['first_login'] != '' ){
+
+
+
+						$query=$this->db->query("
+
+						UPDATE tb_user
+							   SET 
+							       last_login_date='".$login_date."'
+							 WHERE id_user = '".$id."';
+
+
+						");
+
+		}else{
+
+
+						$last_login_date = date('Y-m-d h:i:s');
+
+						$query=$this->db->query("
+
+						UPDATE tb_user
+							   SET 
+							       first_login='".$login_date."'
+							 WHERE id_user = '".$id."';
+
+
+			");
+
+
+		}
+
+
+		
+		
+		return $query;
+
+	}
+
+
+
+}
+

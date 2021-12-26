@@ -1,0 +1,1429 @@
+
+
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1><?php echo $page_name ; ?></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="<?php echo base_url()."administrator/" ?>">Dashboard</a></li>
+                                    <li><a href="<?php echo base_url()."trip_hl/form6/".$kode_trip; ?>"><?php echo $page_name ; ?></a></li>
+                                    <li class="active"><?php echo $page_name_detail ; ?></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+ <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            
+                            <div class="card-header">
+                                <strong class="card-title">Add Data <?php echo $page_name_detail; ?></strong>
+                              
+                            </div>
+
+
+                            <div class="card-body">
+
+                                
+                                <?php 
+                                 $attributes = array('class'=>'form-horizontal','role'=>'form');
+                                    echo form_open_multipart('trip_hl/form6_update/'.$kode_trip."/".$seq,$attributes); 
+                                ?>
+
+
+                 <div class="row">
+
+              <div class='col-md-4'>
+                  <table class='table table-condensed table-bordered'>
+
+                  <tbody>
+
+                      <tr>
+                            <th width='120px' scope='row'>kode trip</th>   
+                            <td><input type='text' class='form-control' name='kode_trip' value="<?php echo $kode_trip; ?>" readonly autocomplete=off></td>
+                       </tr>
+
+
+                       <tr>
+                            <th width='120px' scope='row'>seq </th>   
+                            <td><input type='text' class='form-control' name='seq' value="<?php echo $seq; ?>" readonly></td>
+                       </tr>
+
+                        <tr>
+                            <th width='120px' scope='row'>id_pemantau</th>   
+                            <td><input type='text' class='form-control' name='id_pemantau' value="<?php if( !empty($post['id_pemantau']) ){ echo $post['id_pemantau']; } ?>" autocomplete=off></td>
+                       </tr>
+
+                     
+                       <tr>
+                            <th width='120px' scope='row'>aktivitas_memancing</th>   
+                            <td>
+                              
+                                <select class='form-control' name='aktivitas_memancing' id="aktivitas_memancing">
+                                    <option value="">Silahkan Pilih</option>
+                                    <option value="1" <?php if( !empty($post['aktivitas_memancing']) ){ if($post['aktivitas_memancing'] == "1"){ echo 'selected';  } } ?>>Pole and line</option>
+                                    <option value="2" <?php if( !empty($post['aktivitas_memancing']) ){ if($post['aktivitas_memancing'] == "2"){ echo 'selected';  } } ?>>Handline </option>
+                                    <option value="3" <?php if( !empty($post['aktivitas_memancing']) ){ if($post['aktivitas_memancing'] == "3"){ echo 'selected';  } } ?>>Umpan</option>
+                                    <option value="4" <?php if( !empty($post['aktivitas_memancing']) ){ if($post['aktivitas_memancing'] == "4"){ echo 'selected';  } } ?>>Lain-lain</option>
+                                </select>
+                            </td>
+                       </tr>
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>tanggal</th>   
+                            <td><input type='text' class='form-control' name='tanggal' id="tanggal" value="<?php if( !empty($post['tanggal']) ){ echo $post['tanggal']; } ?>" autocomplete=off></td>
+                       </tr>
+
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>waktu (contoh: 11:45 AM)</th>   
+                            <td>
+
+                               <input type='time' class='form-control' name='waktu' value="<?php if( !empty($post['waktu']) ){ echo $post['waktu']; } ?>" placeholder="waktu">
+                              
+                              <!--<input type='text' class='form-control' name='waktu' value="<?php if( !empty($post['waktu']) ){ echo $post['waktu']; } ?>" autocomplete=off>-->
+                               <!-- <div class="row">
+                                    <div class='col-md-4'>
+                                        <input type='number' class='form-control' placeholder="Jam" name='jam' required autocomplete=off required min='0' max='23' value="<?php if( !empty($post['jam']) ){ echo $post['jam']; } ?>">
+                                    </div>
+                                    <b>:</b> 
+                                    <div class='col-md-4'>
+                                        <input type='number' class='form-control' placeholder="Menit" name='menit' required autocomplete=off required min='0' max='59' value="<?php if( !empty($post['menit']) ){ echo $post['menit']; } ?>">
+                                    </div>
+                                </div> -->
+                            </td>
+                       </tr>
+
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>lintang</th>   
+                            <td>
+                             <!-- <input type='text' class='form-control' name='lintang' value="<?php if( !empty($post['lintang']) ){ echo $post['lintang']; } ?>" >-->
+                               <div class="row">
+                                    <div class='col-md-4'>
+                                        <input type='number' class='form-control' name='lintang_degree' value="<?php echo $post['lintang_degree']; ?>" placeholder="Lintang Degree" required autocomplete=off>
+                                    </div>
+                                     <div class='col-md-4'>
+                                        <input type='number' class='form-control' name='lintang_minutes'  value="<?php echo $post['lintang_minutes']; ?>" placeholder="Lintang Minutes" required autocomplete=off  min="0" max="60" step=".01">
+                                    </div>
+                                     <div class='col-md-4'>
+                                        <select class='form-control' name='lintang_us' id="lintang_us">
+                                            <option value="U" <?php if( !empty($post['lintang_us']) ){ if($post['lintang_us'] == "U"){ echo 'selected';  } } ?> >Utara</option>
+                                            <option value="S" <?php if( !empty($post['lintang_us']) ){ if($post['lintang_us'] == "S"){ echo 'selected';  } } ?> > Selatan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                       </tr>
+
+
+                     
+                   <!--<tr>
+                            <th width='120px' scope='row'>ket_lintang</th>   
+                            <td><input type='text' class='form-control' name='ket_lintang' value="<?php if( !empty($post['ket_lintang']) ){ echo $post['ket_lintang']; } ?>"></td>
+                       </tr> -->
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>bujur</th>   
+                            <td>
+                             <!-- <input type='text' class='form-control' name='bujur' value="<?php if( !empty($post['bujur']) ){ echo $post['bujur']; } ?>" autocomplete=off>-->
+                                <div class="row">
+                                    <div class='col-md-4'>
+                                        <input type='number' class='form-control' name='bujur_degree' value="<?php echo $post['bujur_degree']; ?>"  placeholder="Bujur Degree" required autocomplete=off>
+                                    </div>
+                                    <div class='col-md-4'>
+                                        <input type='number' class='form-control' name='bujur_minutes' value="<?php echo $post['bujur_minutes']; ?>" placeholder="Bujur Minutes" required autocomplete=off  min="0" max="60" step=".01">
+                                    </div>
+                                    <div class='col-md-4'>
+                                       <select class='form-control' name='bujur_us' id="bujur_us">
+                                            <option value="T" <?php if( !empty($post['bujur_us']) ){ if($post['bujur_us'] == "T"){ echo 'selected';  } } ?> > Timur</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                       </tr>
+
+                      <!--<tr>
+                            <th width='120px' scope='row'>ket_bujur</th>   
+                            <td><input type='text' class='form-control' name='ket_bujur' value="<?php if( !empty($post['ket_bujur']) ){ echo $post['ket_bujur']; } ?>"></td>
+                       </tr>-->
+
+
+                  </tbody>
+
+                </table>
+              </div>
+
+
+               <div class='col-md-4'>
+                  <table class='table table-condensed table-bordered'>
+
+                  <tbody>
+
+                     <tr>
+                            <th width='120px' scope='row'>jenis_pancing</th>   
+
+                            <td><input type='text' class='form-control' name='jenis_pancing' value="<?php if( !empty($post['jenis_pancing']) ){ echo $post['jenis_pancing']; } ?>" autocomplete=off></td>
+                       </tr>
+
+                      <tr>
+                            <th width='120px' scope='row'>kode_posisi_pancing</th>   
+                            <td>
+                                
+                                     
+                               
+                                <select class="form-control" name="kode_posisi_pancing" id="kode_posisi_pancing">
+                                     <option value="">Select kode_posisi_pancing_etp</option>
+                                     <?php foreach($kode_posisi_pancing_etp->result() as $row){ ?>
+                                        <option value="<?php echo $row->kode_aktivitas ; ?>" <?php if( !empty($post['kode_posisi_pancing']) ){ if($row->kode_aktivitas == $post['kode_posisi_pancing']) { echo 'selected';  }  } ?>><?php echo $row->nama_aktivitas ; ?></option>
+                                    <?php } ?>
+                               </select>
+                               </td>
+                       </tr>
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>kode_kondisi_tertangkap</th>   
+                            <td>
+                                <select class="form-control" name="kode_kondisi_tertangkap" id="kode_kondisi_tertangkap">
+                                     <option value="">Select kode_kondisi_tertangkap</option>
+                                     <?php foreach($kode_kondisi_etp->result() as $row){ ?>
+                                        <option value="<?php echo $row->kode_aktivitas ; ?>" <?php if( !empty($post['kode_kondisi_tertangkap']) ){ if($row->kode_aktivitas == $post['kode_kondisi_tertangkap']) { echo 'selected';  }  } ?>><?php echo $row->nama_aktivitas ; ?></option>
+                                    <?php } ?>
+                               </select>
+                               </td>
+                            </td>
+                       </tr>
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>kode_kondisi_tertangkap_deskripsi</th>   
+                            <td><input type='text' class='form-control' name='kode_kondisi_tertangkap_deskripsi' value="<?php if( !empty($post['kode_kondisi_tertangkap_deskripsi']) ){ echo $post['kode_kondisi_tertangkap_deskripsi']; } ?>" autocomplete=off></td>
+                       </tr>
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>kode_kondisi_dilepas</th>   
+                            <td>
+                              <select class="form-control" name="kode_kondisi_dilepas" id="kode_kondisi_tertangkap">
+                                     <option value="">Select kode_kondisi_dilepas</option>
+                                     <?php foreach($kode_kondisi_etp->result() as $row){ ?>
+                                        <option value="<?php echo $row->kode_aktivitas ; ?>" <?php if( !empty($post['kode_kondisi_dilepas']) ){ if($row->kode_aktivitas == $post['kode_kondisi_dilepas']) { echo 'selected';  }  } ?>><?php echo $row->nama_aktivitas ; ?></option>
+                                    <?php } ?>
+                               </select>
+                            </td>
+                       </tr>
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>kode_kondisi_dilepas_deskripsi</th>   
+                            <td><input type='text' class='form-control' name='kode_kondisi_dilepas_deskripsi' value="<?php if( !empty($post['kode_kondisi_dilepas_deskripsi']) ){ echo $post['kode_kondisi_dilepas_deskripsi']; } ?>" autocomplete=off></td>
+                       </tr>
+
+                     
+                   <tr>
+                            <th width='120px' scope='row'>tanda</th>   
+                            <td><input type='text' class='form-control' name='tanda' value="<?php if( !empty($post['tanda']) ){ echo $post['tanda']; } ?>" autocomplete=off></td>
+                       </tr>
+
+
+
+
+
+                  </tbody>
+
+                </table>
+              </div>
+
+            </div>
+
+
+               <button type='submit' name='submit' class='btn btn-info'>Simpan</button>
+               <a href="<?php echo base_url(); ?>trip_hl/form6/<?php echo $kode_trip; ?>"><button type='button' class='btn btn-default pull-right'>Cancel</button></a>
+ 
+
+                               
+                            </div> <!-- /.table-stats -->
+                        </div>
+                    </div>
+                  </form>
+
+
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->
+
+
+
+
+
+ <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            
+                            <div class="card-header">
+                               
+                                <strong class="card-title">TABLE <?php echo $table1; ?></strong>
+                              
+                            </div>
+
+
+                            <div class="card-body">
+
+                              <?php echo $button_add ; ?>
+
+                      <table id="penyu" border="1" class="table-style table table-striped table-bordered" cellspacing="0" width="100%">
+        
+                            <thead>
+                                <tr>
+
+                                    <th> kode_species  </th>
+
+                                    <th> sisik_hidung </th>
+                                    <th> sisik_leher </th>
+                                    <th> sisik_kosta </th>
+                                    <th> sisik_belakang </th>
+                                    <th> no_foto </th>
+                                    <th> scl </th>
+                                    <th> cw </th>
+
+                                   
+                                    <th> ccl </th>
+                                    <th> Edit </th>
+                                    <th> Delete </th>
+                                </tr>
+                            </thead>
+
+                             <tfoot>
+                                <tr>
+                                  <th> kode_species  </th>
+                                  
+                                   <th> sisik_hidung </th>
+                                    <th> sisik_leher </th>
+                                    <th> sisik_kosta </th>
+                                    <th> sisik_belakang </th>
+                                    <th> no_foto </th>
+                                    <th> scl </th>
+                                    <th> cw </th>
+
+                                   
+                                    <th> ccl </th>
+                                    <th> Edit </th>
+                                    <th> Delete </th>
+                                </tr>
+                             </tfoot>
+                            
+                            </table>
+                              
+
+              <div class='col-md-12'>
+
+
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+
+
+ <div class="modal fade" tabindex="-1" role="dialog" id="myModalTable1">
+  <div class="modal-dialog  modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <center><h5 class="modal-title">Tambah PENYU  </h5></center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <form class="form-horizontal" action="<?php echo $url_add_table1; ?>" method="post" id="AddDataTable1Form">
+       <div class="modal-body">
+
+        <div class="messages"></div>
+
+
+          <div class="form-group">
+          <label for="exampleInputEmail1">id_trip</label>
+          <input type="text" class="form-control" id="id_trip" name="id_trip" value="<?php echo $kode_trip ; ?>" readonly required>
+        </div>
+
+          <div class="form-group">
+          <label for="exampleInputEmail1">seq</label>
+          <input type="text" class="form-control" id="seq" name="seq" value="<?php echo $seq ; ?>" readonly required>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">tipe</label>
+          <input type="text" class="form-control" id="tipe" name="tipe" value="<?php echo 'penyu' ; ?>" readonly required>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">species_penyu</label>
+          <!--<input type="text" class="form-control" id="species_penyu" name="species_penyu" placeholder="Enter species_penyu" autocomplete=off>-->
+          <select class="form-control" name="species_penyu" id="species_penyu">
+                                     <option value="">Select Kode Species</option>
+                                       <?php foreach($kode_etp_penyu->result() as $row){ ?>
+                                        <option value="<?php echo $row->fao ; ?>" ><?php echo $row->fao ; ?> - <?php echo $row->english ; ?></option>
+                                       <?php  } ?>
+                                </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">sisik_hidung</label>
+          <input type="number" class="form-control" id="sisik_hidung" name="sisik_hidung" placeholder="Enter sisik_hidung" autocomplete=off min='0' max='5'>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">sisik_leher</label>
+          <input type="number" class="form-control" id="sisik_leher" name="sisik_leher" placeholder="Enter sisik_leher" autocomplete=off min='0' max='1'>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">sisik_kosta</label>
+          <input type="number" class="form-control" id="sisik_kosta" name="sisik_kosta" placeholder="Enter sisik_kosta" autocomplete=off min='0' max='16'>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">sisik_belakang</label>
+          <input type="number" class="form-control" id="sisik_belakang" name="sisik_belakang" placeholder="Enter sisik_belakang" autocomplete=off min='0' max='7'>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">no_foto</label>
+          <input type="text" class="form-control" id="no_foto" name="no_foto" placeholder="Enter no_foto" autocomplete=off>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">scl (Cm)</label>
+          <input type="number" class="form-control" id="scl" name="scl" placeholder="Enter scl" autocomplete=off step=".01">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">cw (Cm)</label>
+          <input type="number" class="form-control" id="cw" name="cw" placeholder="Enter cw" autocomplete=off step=".01">
+        </div>
+
+
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">ccl (Cm)</label>
+          <input type="number" class="form-control" id="ccl" name="ccl" placeholder="Enter ccl"  autocomplete=off step=".01">
+        </div>
+
+    
+
+       </div>
+
+       <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Submit data</button>
+        </div>
+    </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+ <div class="modal fade" tabindex="-1" role="dialog" id="editTable1Modal">
+  <div class="modal-dialog  modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <center><h5 class="modal-title">Update observerform_umpan_detail</h5></center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <form class="form-horizontal" action="<?php echo $url_update_table1; ?>" method="post" id="EditDataTable1Form">
+       <div class="modal-body">
+
+        <div class="edit-messages"></div>
+
+
+          <div class="form-group">
+          <label for="exampleInputEmail1">id_trip</label>
+          <input type="text" class="form-control" id="edit_id_trip" name="edit_id_trip" value="<?php echo $kode_trip ; ?>" readonly required>
+        </div>
+
+          <div class="form-group">
+          <label for="exampleInputEmail1">seq</label>
+          <input type="text" class="form-control" id="edit_seq" name="edit_seq" value="<?php echo $seq ; ?>" readonly required>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">tipe</label>
+          <input type="text" class="form-control" id="edit_tipe" name="edit_tipe" value="<?php echo 'penyu' ; ?>" readonly required>
+        </div>
+
+        
+        <div class="form-group">
+          <label for="exampleInputEmail1">edit_nomor</label>
+          <input type="text" class="form-control" id="edit_nomor" name="edit_nomor" readonly required>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">species_penyu</label>
+          <!--<input type="text" class="form-control" id="edit_species_penyu" name="edit_species_penyu" placeholder="Enter species_penyu" autocomplete=off>-->
+               <select class="form-control" name="edit_species_penyu" id="edit_species_penyu">
+                                     <option value="">Select Kode Species</option>
+                                       <?php foreach($kode_etp_penyu->result() as $row){ ?>
+                                        <option value="<?php echo $row->fao ; ?>" ><?php echo $row->fao ; ?> - <?php echo $row->english ; ?></option>
+                                       <?php  } ?>
+                                </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">sisik_hidung</label>
+          <input type="number" class="form-control" id="edit_sisik_hidung" name="edit_sisik_hidung" placeholder="Enter sisik_hidung" autocomplete=off min='0' max='5'>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">sisik_leher</label>
+          <input type="number" class="form-control" id="edit_sisik_leher" name="edit_sisik_leher" placeholder="Enter sisik_leher" autocomplete=off min='0' max='1'>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">sisik_kosta</label>
+          <input type="number" class="form-control" id="edit_sisik_kosta" name="edit_sisik_kosta" placeholder="Enter sisik_kosta" autocomplete=off min='0' max='16'>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">sisik_belakang</label>
+          <input type="number" class="form-control" id="edit_sisik_belakang" name="edit_sisik_belakang" placeholder="Enter sisik_belakang" autocomplete=off min='0' max='7'>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">no_foto</label>
+          <input type="text" class="form-control" id="edit_no_foto" name="edit_no_foto" placeholder="Enter no_foto" autocomplete=off >
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">scl (Cm)</label>
+          <input type="number" class="form-control" id="edit_scl" name="edit_scl" placeholder="Enter scl" autocomplete=off step=".01">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">cw (Cm)</label>
+          <input type="number" class="form-control" id="edit_cw" name="edit_cw" placeholder="Enter cw" autocomplete=off step=".01">
+        </div>
+
+        
+         <div class="form-group">
+          <label for="exampleInputEmail1">ccl (Cm)</label>
+          <input type="number" class="form-control" id="edit_ccl" name="edit_ccl" placeholder="Enter ccl"  required autocomplete=off step=".01">
+        </div>
+
+       
+       </div>
+
+       <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Submit data</button>
+        </div>
+    </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- remove modal -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="disableTable1Modal">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+              <center><h5 class="modal-title">Disable</h5></center>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="disable-messages"></div>
+          <p>Do you really want to disable ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="hapusBtn">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!-- /remove modal -->
+
+
+<!--END  Modal -->
+
+
+
+
+ <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            
+                            <div class="card-header">
+                               
+                                <strong class="card-title">TABLE <?php echo $table2; ?></strong>
+                              
+                            </div>
+
+
+                            <div class="card-body">
+
+                              <?php echo $button_add2 ; ?>
+
+                      <table id="lain" border="1" class="table-style table table-striped table-bordered" cellspacing="0" width="100%">
+        
+                            <thead>
+                                <tr>
+                                    <th> kode_species  </th>
+                                    <th> jenis_kelamin  </th>
+                                    <th> foto  </th>
+                                    <th> no_foto </th>
+                                    <th> panjang </th>
+                                    <th> Edit </th>
+                                    <th> Delete </th>
+                                </tr>
+                            </thead>
+
+                             <tfoot>
+                                <tr> 
+                                    <th> kode_species  </th>
+                                    <th> jenis_kelamin  </th>
+                                    <th> foto  </th>
+                                    <th> no_foto </th>
+                                    <th> panjang </th>
+                                    <th> Edit </th>
+                                    <th> Delete </th>
+                                </tr>
+                             </tfoot>
+                            
+                            </table>
+                              
+
+              <div class='col-md-12'>
+
+
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+ <div class="modal fade" tabindex="-1" role="dialog" id="myModalTable2">
+  <div class="modal-dialog  modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <center><h5 class="modal-title">Tambah Lainnya  </h5></center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <form class="form-horizontal" action="<?php echo $url_add_table1; ?>" method="post" id="AddDataTable2Form">
+       <div class="modal-body">
+
+        <div class="messages"></div>
+
+
+          <div class="form-group">
+          <label for="exampleInputEmail1">id_trip</label>
+          <input type="text" class="form-control" id="id_trip" name="id_trip" value="<?php echo $kode_trip ; ?>" readonly required>
+        </div>
+
+          <div class="form-group">
+          <label for="exampleInputEmail1">seq</label>
+          <input type="text" class="form-control" id="seq" name="seq" value="<?php echo $seq ; ?>" readonly required>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">tipe</label>
+          <input type="text" class="form-control" id="tipe" name="tipe" value="<?php echo 'lain' ; ?>" readonly required>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">jenis_species</label>
+          <select class='form-control' name='jenis_species' id="jenis_species">
+                                            <option value="" >Pilih Species</option>
+                                            <option value="Hiu" >Hiu</option>
+                                            <option value="Paus" >Paus</option>
+                                            <option value="Lumba-lumba" >Lumba-lumba</option>
+                                            <option value="Burung" >Burung</option>
+                                        </select>
+        </div>
+
+       
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">kode_species</label>
+          <!--<input type="text" class="form-control" id="kode_species" name="kode_species" placeholder="Enter kode_species" required autocomplete=off>-->
+          <select class="form-control" name="kode_species" id="kode_species">
+                                    <!-- <option value="">Select Kode Species</option>
+                                       <?php foreach($kode_etp_lain->result() as $row){ ?>
+                                        <option value="<?php echo $row->fao ; ?>" > <?php echo $row->english ; ?></option>
+                                       <?php  } ?>-->
+                                </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">jenis_kelamin</label>
+          <!--<input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" placeholder="Enter jenis_kelamin" required>-->
+          <select class='form-control' name='jenis_kelamin' id="jenis_kelamin">
+                                            <option value="" >Silahkan Pilih</option>
+                                            <option value="Jantan" >Jantan</option>
+                                            <option value="Betina" >Betina</option>
+                                            <option value="Unknown" >Unknown</option>
+          </select>
+
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">foto</label>
+           <select class='form-control' name='foto' id="foto">
+                                            <option value="Y" >Ya</option>
+                                            <option value="T" >Tidak</option>
+                                        </select>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">no_foto</label>
+          <input type="text" class="form-control" id="no_foto" name="no_foto" placeholder="Enter no_foto"  autocomplete=off>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">panjang (Cm)</label>
+          <input type="text" class="form-control" id="panjang" name="panjang" placeholder="Enter panjang"  required autocomplete=off>
+        </div>
+
+
+ 
+
+       </div>
+
+       <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Submit data</button>
+        </div>
+    </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+ <div class="modal fade" tabindex="-1" role="dialog" id="editTable2Modal">
+  <div class="modal-dialog  modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <center><h5 class="modal-title">Update Lainnya  </h5></center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <form class="form-horizontal" action="<?php echo $url_update_table1; ?>" method="post" id="EditDataTable2Form">
+       <div class="modal-body">
+
+        <div class="edit-messages"></div>
+
+
+
+          <div class="form-group">
+          <label for="exampleInputEmail1">id_trip</label>
+          <input type="text" class="form-control" id="edit_id_trip2" name="edit_id_trip" value="<?php echo $kode_trip ; ?>" readonly required>
+        </div>
+
+          <div class="form-group">
+          <label for="exampleInputEmail1">seq</label>
+          <input type="text" class="form-control" id="edit_seq2" name="edit_seq" value="<?php echo $seq ; ?>" readonly required>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">tipe</label>
+          <input type="text" class="form-control" id="edit_tipe2" name="edit_tipe" value="<?php echo 'lain' ; ?>" readonly required>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">edit_nomor</label>
+          <input type="text" class="form-control" id="edit_nomor2" name="edit_nomor" readonly required>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">jenis_species</label>
+           <select class='form-control' name='edit_jenis_species' id="edit_jenis_species">
+                                            <option value="" >Pilih Species</option>
+                                            <option value="Hiu" >Hiu</option>
+                                            <option value="Paus" >Paus</option>
+                                            <option value="Lumba-lumba" >Lumba-lumba</option>
+                                            <option value="Burung" >Burung</option>
+                                        </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">kode_species</label>
+         <!--<input type="text" class="form-control" id="edit_kode_species" name="edit_kode_species" placeholder="Enter kode_species" required autocomplete=off>-->
+         <select class="form-control" name="edit_kode_species" id="edit_kode_species">
+                                     <!--<option value="">Select Kode Species</option>
+                                       <?php foreach($kode_etp_lain->result() as $row){ ?>
+                                        <option value="<?php echo $row->fao ; ?>" > <?php echo $row->english ; ?></option>
+                                       <?php  } ?>-->
+                                </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">jenis_kelamin</label>
+          <!--<input type="text" class="form-control" id="edit_jenis_kelamin" name="edit_jenis_kelamin" placeholder="Enter jenis_kelamin" required>-->
+          <select class='form-control' name='edit_jenis_kelamin' id="edit_jenis_kelamin">
+                                            <option value="" >Silahkan Pilih</option>
+                                            <option value="Jantan" >Jantan</option>
+                                            <option value="Betina" >Betina</option>
+                                            <option value="Unknown" >Unknown</option>
+          </select>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">foto</label>
+          <select class='form-control' name='edit_foto' id="edit_foto">
+                                            <option value="Y" >Ya</option>
+                                            <option value="T" >Tidak</option>
+                                        </select>
+        </div>
+
+         <div class="form-group">
+          <label for="exampleInputEmail1">no_foto</label>
+          <input type="text" class="form-control" id="edit_no_foto2" name="edit_no_foto2" placeholder="Enter no_foto"  autocomplete=off>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">panjang (Cm)</label>
+          <input type="text" class="form-control" id="edit_panjang" name="edit_panjang" placeholder="Enter panjang"  required autocomplete=off>
+        </div>
+
+
+       </div>
+
+       <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Submit data</button>
+        </div>
+    </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!-- remove modal -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="disableTable2Modal">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+              <center><h5 class="modal-title">Disable 2 modal</h5></center>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="disable-messages"></div>
+          <p>Do you really want to disable ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="hapusBtn2">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!-- /remove modal -->
+
+
+<!--END  Modal -->
+
+
+
+<script>
+
+ $( function() {
+    $( "#tanggal" ).datepicker(
+    {   
+        dateFormat: 'yy-mm-dd', 
+        changeMonth: true,
+        changeYear: true,
+        minDate: new Date("<?php echo $trip_info['tanggal_keberangkatan']; ?>"),
+        maxDate: new Date("<?php echo $trip_info['tanggal_kedatangan']; ?>"),
+        numberOfMonths: 2,
+        onSelect: function(selected) {
+          $("#tanggal").datepicker("option","minDate", selected)
+        }
+
+    });
+
+  } );
+
+
+$(document).ready(function() {
+  
+   penyu = $("#penyu").DataTable({
+    "ajax": "<?php echo $url_load_table ?>",
+        "order": [],   
+    "scrollX": true
+    });
+
+   lain = $("#lain").DataTable({
+    "ajax": "<?php echo $url_load_table2 ?>",
+        "order": [],   
+    "scrollX": true
+    });
+
+
+      $("#jenis_species").change(function(){
+
+       var id = $("#jenis_species").val();
+       $("#kode_species").html('<option value="">Select Species</option>');
+
+         $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "<?php echo $select_load_species; ?>",
+            data: "species_fao="+id,
+            success: function(msg){
+
+                if(msg == ''){
+                   $("#kode_species").html('<option value="">Select Species</option>');
+
+                }else{
+                    $("#kode_species").html(msg);                                                     
+                }
+            }
+        });    
+    });
+
+    $("#edit_jenis_species").change(function(){
+
+        var id = $("#edit_jenis_species").val();
+       $("#edit_kode_species").html('<option value="">Select Species</option>');
+       // mengirim dan mengambil data
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "<?php echo $select_load_species; ?>",
+            data: "species_fao="+id,
+            success: function(msg){
+               // jika tidak ada data
+                 if(msg == ''){
+                   $("#edit_kode_species").html('<option value="">Select Species</option>');
+
+                }else{
+                    $("#edit_kode_species").html(msg);                                                     
+                }
+            }
+        });    
+    });
+
+     $('#AddDataTable1Btn').on('click',function(){
+        
+      $('#AddDataTable1Form')[0].reset();
+      $('.form-group').removeClass('has-error').removeClass('has-success');
+      $('.text-danger').remove();
+      $('.messages').html("");
+       
+      $('#AddDataTable1Form').unbind('submit').bind('submit',function(e){
+
+      
+        
+        $('.text-danger').remove();
+        $('.messages').html("");
+          var form = $(this);
+
+                      var me = $(this);
+                        e.preventDefault();
+                      if ( me.data('requestRunning') ) {
+                        return;
+                      }
+                      me.data('requestRunning', true);
+                      
+          $.ajax({
+                    url : form.attr('action'),
+                    type : form.attr('method'),
+                    data : form.serialize(),
+                    dataType :'json',
+                    success:function(response){
+                        // remove pesan error
+                        $('.form-group').removeClass('has-error').removeClass('has-success');
+
+                        if (response.success == true) {
+                            $(".messages").html('<div class="alert alert-success alert-dismissible" role="alert">'+
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                              '<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>'+response.messages+
+                            '</div>');
+
+                            //reset form 
+                            $('#AddDataTable1Form')[0].reset();
+                            //reload the datatables
+                            penyu.ajax.reload(null,false);
+                        }else{
+                            $(".messages").html('<div class="alert alert-warning alert-dismissible" role="alert">'+
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                              '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span> </strong>'+response.messages+
+                            '</div>');
+                        }
+                    }
+                    , error: function( xhr, status, error){
+                            console.log(xhr.statusText);
+                            console.log(error);
+                            console.log(status);
+
+
+                            alert('500 Internal server error !');
+                      } ,
+                      complete: function() {
+                        me.data('requestRunning', false);
+                      } 
+                });
+
+
+
+
+
+          return false;  
+      });
+      
+    });
+
+
+
+  $('#AddDataTable2Btn').on('click',function(){
+        
+      $('#AddDataTable1Form')[0].reset();
+      $('.form-group').removeClass('has-error').removeClass('has-success');
+      $('.text-danger').remove();
+      $('.messages').html("");
+       
+      $('#AddDataTable2Form').unbind('submit').bind('submit',function(e){
+
+      
+        
+        $('.text-danger').remove();
+        $('.messages').html("");
+          var form = $(this);
+
+                      var me = $(this);
+                        e.preventDefault();
+                      if ( me.data('requestRunning') ) {
+                        return;
+                      }
+                      me.data('requestRunning', true);
+                      
+          $.ajax({
+                    url : form.attr('action'),
+                    type : form.attr('method'),
+                    data : form.serialize(),
+                    dataType :'json',
+                    success:function(response){
+                        // remove pesan error
+                        $('.form-group').removeClass('has-error').removeClass('has-success');
+
+                        if (response.success == true) {
+                            $(".messages").html('<div class="alert alert-success alert-dismissible" role="alert">'+
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                              '<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>'+response.messages+
+                            '</div>');
+
+                            //reset form 
+                            $('#AddDataTable1Form')[0].reset();
+                            //reload the datatables
+                            lain.ajax.reload(null,false);
+                        }else{
+                            $(".messages").html('<div class="alert alert-warning alert-dismissible" role="alert">'+
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                              '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span> </strong>'+response.messages+
+                            '</div>');
+                        }
+                    }
+                    , error: function( xhr, status, error){
+                            console.log(xhr.statusText);
+                            console.log(error);
+                            console.log(status);
+
+
+                            alert('500 Internal server error !');
+                      } ,
+                      complete: function() {
+                        me.data('requestRunning', false);
+                      } 
+                });
+
+
+
+
+
+          return false;  
+      });
+      
+    });
+
+
+
+
+
+}) ; 
+
+
+
+
+function editData(id_trip = null, seq=null , nomor=null ){
+
+
+  if(id_trip){
+        $(".form-group").removeClass('has-error').removeClass('has-success');
+        $(".text-danger").remove();
+        // empty the message div
+        $(".edit-messages").html("");
+
+         $('#EditDataTable1Form')[0].reset();
+
+         $.ajax({
+            url: '<?php echo $url_show_table; ?>',
+            type: 'post',
+            data: {id_trip : id_trip , seq : seq , nomor : nomor  },
+            dataType: 'json',
+            success:function(response) {
+
+                $('#edit_nomor').val(response.messages[0].nomor);
+                $('#edit_species_penyu').val(response.messages[0].species_penyu);
+                $('#edit_sisik_hidung').val(response.messages[0].sisik_hidung);
+                $('#edit_sisik_leher').val(response.messages[0].sisik_leher);
+                $('#edit_sisik_kosta').val(response.messages[0].sisik_kosta);
+                $('#edit_sisik_belakang').val(response.messages[0].sisik_belakang);
+                $('#edit_no_foto').val(response.messages[0].no_foto);
+                $('#edit_scl').val(response.messages[0].scl);
+                $('#edit_cw').val(response.messages[0].cw);
+            
+                $('#edit_ccl').val(response.messages[0].ccl);
+
+              $("#EditDataTable1Form").unbind('submit').bind('submit', function(e) {
+
+                 $(".text-danger").remove();
+
+                    var form = $(this);
+                    var me = $(this);
+                        e.preventDefault();
+                      if ( me.data('requestRunning') ) {
+                        return;
+                      }
+                      me.data('requestRunning', true);
+
+                   $.ajax({
+                                url: form.attr('action'),
+                                type: form.attr('method'),
+                                data: form.serialize(),
+                                dataType: 'json',
+                                success:function(response) {
+                    if (response.success == true) {
+                        $(".edit-messages").html('<div class="alert alert-success alert-dismissible" role="alert">'+
+                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                          '<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>'+response.messages+
+                        '</div>');
+                        
+                    
+                        penyu.ajax.reload(null,false);
+                        
+                      }else{
+                        $(".edit-messages").html('<div class="alert alert-warning alert-dismissible" role="alert">'+
+                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                          '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span> </strong>'+response.messages+
+                        '</div>');
+                        alert('Gagal');
+                      }
+                          } ,
+                       error: function(xhr, status, error) {
+                        console.log(status);
+                        console.log(error);
+                    },
+                      complete: function() {
+                        me.data('requestRunning', false);
+                      } 
+                  }); // /ajax
+
+
+
+                 //return false;
+                   
+                });
+                
+
+            }  // /success
+            , error: function( xhr, status, error){
+                console.log(xhr.statusText);
+                console.log(error);
+                console.log(status);
+
+
+               alert('500 Internal server error !');
+            } 
+        }); // /fetch selected member info
+
+   } else {
+        alert('Error: Refresh the page again');
+    }
+
+    
+    }
+
+
+
+function editData2(id_trip = null, seq=null , nomor=null ){
+
+
+  if(id_trip){
+        $(".form-group").removeClass('has-error').removeClass('has-success');
+        $(".text-danger").remove();
+        // empty the message div
+        $(".edit-messages").html("");
+
+         $('#EditDataTable2Form')[0].reset();
+
+         $.ajax({
+            url: '<?php echo $url_show_table; ?>',
+            type: 'post',
+            data: {id_trip : id_trip , seq : seq , nomor : nomor  },
+            dataType: 'json',
+            success:function(response) {
+
+                $('#edit_nomor2').val(response.messages[0].nomor);
+                $('#edit_kode_species').val(response.messages[0].kode_species);
+                $('#edit_jenis_species').val(response.messages[0].jenis_species);
+                $('#edit_jenis_kelamin').val(response.messages[0].jenis_kelamin);
+                $('#edit_foto').val(response.messages[0].foto);
+                $('#edit_no_foto2').val(response.messages[0].no_foto);
+                $('#edit_panjang').val(response.messages[0].panjang);
+              
+                getJenisSpeciesFao(response.messages[0].jenis_species , response.messages[0].kode_species)
+
+
+              console.log(response);
+              alert(response);
+            
+
+              $("#EditDataTable2Form").unbind('submit').bind('submit', function(e) {
+
+                alert('masuk pake eko'); 
+
+                 $(".text-danger").remove();
+
+                    var form = $(this);
+                    var me = $(this);
+                        e.preventDefault();
+                      if ( me.data('requestRunning') ) {
+                        return;
+                      }
+                      me.data('requestRunning', true);
+
+                   $.ajax({
+                                url: form.attr('action'),
+                                type: form.attr('method'),
+                                data: form.serialize(),
+                                dataType: 'json',
+                                success:function(response) {
+                    if (response.success == true) {
+                        $(".edit-messages").html('<div class="alert alert-success alert-dismissible" role="alert">'+
+                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                          '<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>'+response.messages+
+                        '</div>');
+                        
+                    
+                        lain.ajax.reload(null,false);
+                        
+                      }else{
+                        $(".edit-messages").html('<div class="alert alert-warning alert-dismissible" role="alert">'+
+                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                          '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span> </strong>'+response.messages+
+                        '</div>');
+                        alert('Gagal');
+                      }
+                          } ,
+                       error: function(xhr, status, error) {
+                        console.log(status);
+                        console.log(error);
+                    },
+                      complete: function() {
+                        me.data('requestRunning', false);
+                      } 
+                  }); // /ajax
+
+
+
+                 //return false;
+                   
+                });
+                
+
+            }  // /success
+            , error: function( xhr, status, error){
+                console.log(xhr.statusText);
+                console.log(error);
+                console.log(status);
+
+
+               alert('500 Internal server error !');
+            } 
+        }); // /fetch selected member info
+
+   } else {
+        alert('Error: Refresh the page again');
+    }
+
+    
+    }
+
+
+
+    function disableData(id_trip = null, seq=null , nomor=null ){
+
+
+     if(id_trip) {
+      
+      $("#hapusBtn").unbind('click').bind('click', function() {
+
+
+          $.ajax({
+                url: '<?php echo $url_delete_table1; ?>',
+                type: 'post',
+                data: { id_trip : id_trip , seq : seq , nomor : nomor },
+                dataType: 'json',
+                success:function(response) {
+                  console.log(response);
+                     if (response.success == true) {       
+                        $(".disable-messages").html('<div class="alert alert-success alert-dismissible" role="alert">'+
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                              '<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>'+response.messages+
+                            '</div>');
+                    
+                    penyu.ajax.reload(null,false);
+                    alert('berhasil');
+                    $('#disableTable1Modal').modal('hide');
+
+                    } else {
+                        $(".disable-messages").html('<div class="alert alert-warning alert-dismissible" role="alert">'+
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                              '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span> </strong>'+response.messages+
+                            '</div>');
+                    }
+                }, error: function(xhr, status, error) {
+          console.log(status);
+          console.log(error);
+      }
+            });
+
+
+      }); // click remove btn
+    } 
+    else {
+        alert('Error: Refresh the page again');
+    }
+
+
+}
+
+
+
+
+    function disableData2(id_trip = null, seq=null , nomor=null ){
+
+
+     if(id_trip) {
+      
+      $("#hapusBtn2").unbind('click').bind('click', function() {
+
+
+          $.ajax({
+                url: '<?php echo $url_delete_table1; ?>',
+                type: 'post',
+                data: { id_trip : id_trip , seq : seq , nomor : nomor },
+                dataType: 'json',
+                success:function(response) {
+                  console.log(response);
+                     if (response.success == true) {       
+                        $(".disable-messages").html('<div class="alert alert-success alert-dismissible" role="alert">'+
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                              '<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>'+response.messages+
+                            '</div>');
+                    
+                    lain.ajax.reload(null,false);
+                    alert('berhasil');
+                    $('#disableTable2Modal').modal('hide');
+
+                    } else {
+                        $(".disable-messages").html('<div class="alert alert-warning alert-dismissible" role="alert">'+
+                              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                              '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span> </strong>'+response.messages+
+                            '</div>');
+                    }
+                }, error: function(xhr, status, error) {
+          console.log(status);
+          console.log(error);
+      }
+            });
+
+
+      }); // click remove btn
+    } 
+    else {
+        alert('Error: Refresh the page again');
+    }
+
+
+}
+
+
+
+ function getJenisSpeciesFao(jenis , kode){
+      $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "<?php echo $select_load_species_edit; ?>",
+            data: "jenis="+jenis+"&kode="+kode,
+            success: function(msg){
+
+                if(msg == ''){
+                    $("#edit_kode_species").html('<option value="">Select Species</option>');
+                }else{
+                    $("#edit_kode_species").html(msg);                                                     
+                }
+            }
+        }); 
+   }
+</script>
